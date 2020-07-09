@@ -1,1 +1,5 @@
 2020/07/09 12:43:15 main.go:12: test
+2020/07/09 23:00:40 bitflyer.go:51: action=doRequest endpoint=http://api.bitflyer.com/v1/me/getbalance
+2020/07/09 23:00:40 bitflyer.go:27: 1594303240
+2020/07/09 23:00:40 bitflyer.go:91: url=me/getbalance%!(EXTRA string={"status":-500,"error_message":"ACCESS-TIMESTAMP header is required","data":null})
+2020/07/09 23:00:40 bitflyer.go:99: action=GetBalance err=json: cannot unmarshal object into Go value of type []bitflyer.Balance
