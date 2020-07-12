@@ -3,25 +3,26 @@ package main
 import (
 	"fmt"
 
-	"./bitflyer"
+	"./app/models"
 	"./config"
 	"./utils"
 )
 
 func main() {
 	utils.LoggingSettings(config.Config.LogFile)
-	apiClient := bitflyer.New(config.Config.ApiKey, config.Config.ApiSecret)
+	fmt.Println(models.DbConnection)
+	// apiClient := bitflyer.New(config.Config.ApiKey, config.Config.ApiSecret)
 
-	order := &bitflyer.Order{
-		ProductCode:     config.Config.ProdectCode,
-		ChildOrderType:  "MARKET",
-		Side:            "BUY",
-		Size:            0.01,
-		MinuteToExpires: 1,
-		TimeInForce:     "GTC",
-	}
-	res, _ := apiClient.SendOrder(order)
-	fmt.Println(res.ChildOrderAcceptanceID)
+	// order := &bitflyer.Order{
+	// 	ProductCode:     config.Config.ProdectCode,
+	// 	ChildOrderType:  "MARKET",
+	// 	Side:            "BUY",
+	// 	Size:            0.01,
+	// 	MinuteToExpires: 1,
+	// 	TimeInForce:     "GTC",
+	// }
+	// res, _ := apiClient.SendOrder(order)
+	// fmt.Println(res.ChildOrderAcceptanceID)
 
 	// tickerChannel := make(chan bitflyer.Ticker)
 	// go apiClient.GetRealTimeTicker(config.Config.ProductCode, tickerChannel)
