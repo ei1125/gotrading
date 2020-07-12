@@ -1,18 +1,15 @@
 package main
 
 import (
-	"fmt"
-
 	"./app/controllers"
-	"./app/models"
 	"./config"
 	"./utils"
 )
 
 func main() {
 	utils.LoggingSettings(config.Config.LogFile)
-	fmt.Println(models.DbConnection)
 	controllers.StreamIngestionData()
+	controllers.StartWebServer()
 	// apiClient := bitflyer.New(config.Config.ApiKey, config.Config.ApiSecret)
 
 	// order := &bitflyer.Order{
