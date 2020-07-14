@@ -86,6 +86,7 @@ func CreateCandleWithDuration(ticker bitflyer.Ticker, productCode string, durati
 	return false
 }
 
+// 何のコインか、どの期間か、ローソク何本かを引数にdfcandle.goで定義したstructの型で返す
 func GetAllCandle(productCode string, duration time.Duration, limit int) (dfCandle *DataFrameCandle, err error) {
 	tableName := GetCandleTableName(productCode, duration)
 	cmd := fmt.Sprintf(`SELECT * FROM (
