@@ -48,6 +48,7 @@ func apiMakeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFun
 		fn(w, r)
 	}
 }
+
 //json変換器？
 func apiCandleHandler(w http.ResponseWriter, r *http.Request) {
 	productCode := r.URL.Query().Get("product_code")
@@ -86,7 +87,7 @@ func apiCandleHandler(w http.ResponseWriter, r *http.Request) {
 		if strSmaPeriod3 == "" || err != nil || period3 < 0 {
 			period3 = 50
 		}
-    // 終値と期間（period)からSmaの値を作成
+		// 終値と期間（period)からSmaの値を作成
 		df.AddSma(period1)
 		df.AddSma(period2)
 		df.AddSma(period3)
@@ -109,7 +110,7 @@ func apiCandleHandler(w http.ResponseWriter, r *http.Request) {
 		if strEmaPeriod3 == "" || err != nil || period3 < 0 {
 			period3 = 50
 		}
-    // 終値と期間（period)からSmaの値を作成
+		// 終値と期間（period)からSmaの値を作成
 		df.AddEma(period1)
 		df.AddEma(period2)
 		df.AddEma(period3)
@@ -130,7 +131,12 @@ func apiCandleHandler(w http.ResponseWriter, r *http.Request) {
 		df.AddBBands(n, float64(k))
 	}
 
-  // ここでjsonに変換
+	ichimoku := r.URL.Query().Get("ichimoku")
+	if ichimoku != "" {
+		df.AddIchimoku()
+	}
+
+	// ここでjsonに変換
 	js, err := json.Marshal(df)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
